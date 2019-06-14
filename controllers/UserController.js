@@ -11,7 +11,11 @@ UserController.add = (req, res) => {
   let body = req.body;
 
   UserModel.create(body, (err, record) => {
-    ApiResponse.success(res, record);
+    if (err) {
+      ApiResponse.failure(res, 'Internal Error', err, 400);
+    } else {
+      ApiResponse.success(res, record);
+    }
   });
 
 };
@@ -37,7 +41,10 @@ UserController.authenticate = (req, res, next) => {
         return next(err);
       }
       const token = jwt.sign(user.toJSON(), config.authSecret);
-      ApiResponse.success(res, { token, user });
+      ApiResponse.success(res, {
+        token,
+        user
+      });
     });
   })(req, res, next);
 }

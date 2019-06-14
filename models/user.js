@@ -26,11 +26,11 @@ const schema = mongoose.Schema({
     type: String,
     required: true
   },
-  businessPhone: {
+  bussinessPhone: {
     type: String,
     required: true
   },
-  businessMail: {
+  bussinessMail: {
     type: String,
     required: true
   }

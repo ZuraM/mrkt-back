@@ -4,6 +4,7 @@ const express = require('express'),
   fs = require('fs'),
   passport = require('passport'),
   config = require('./config'),
+  cors = require('cors'),
   bodyParser = require('body-parser');
 
 mongoose.Promise = Promise;
@@ -30,7 +31,7 @@ app.use(bodyParser.json({
 app.use(passport.initialize());
 app.use(passport.session());
 
-
+app.use(cors());
 
 mongoose.connect(config.db.url);
 
