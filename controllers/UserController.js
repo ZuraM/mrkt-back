@@ -40,7 +40,9 @@ UserController.authenticate = (req, res, next) => {
       if (err) {
         return next(err);
       }
-      const token = jwt.sign(user.toJSON(), config.authSecret);
+      const token = jwt.sign(user.toJSON(), config.authSecret, {
+        expiresIn: 60 * 60
+      });
       ApiResponse.success(res, {
         token,
         user
